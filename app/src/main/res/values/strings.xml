@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyChat-Firebase</string>
+    <string name="enter">ENTRAR</string>
 </resources>
