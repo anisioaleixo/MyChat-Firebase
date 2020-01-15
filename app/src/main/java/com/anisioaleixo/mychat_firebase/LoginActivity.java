@@ -2,6 +2,7 @@ package com.anisioaleixo.mychat_firebase;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +36,9 @@ public class LoginActivity extends AppCompatActivity {
         txtAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //Código do clique no Criar conta!
+                //Código do clique no Criar conta!
+                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
