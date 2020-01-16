@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
@@ -16,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnEntar;
     private TextView txtAccount;
     private TextView txtRecuperaSenha;
+    private ImageView imagem;
 
 
     @Override
@@ -28,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         btnEntar = findViewById(R.id.btn_enter);
         txtAccount = findViewById(R.id.txt_account);
         txtRecuperaSenha = findViewById(R.id.txt_esqueci_senha);
+
 
         btnEntar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,5 +57,6 @@ public class LoginActivity extends AppCompatActivity {
                 // startActivity(intent);
             }
         });
+
     }
 }

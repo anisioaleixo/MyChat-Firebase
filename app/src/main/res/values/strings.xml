@@ -6,5 +6,7 @@
     <string name="txtaccount">Criar conta!</string>
     <string name="txtrecuperasenha">Esqueci minha senha!</string>
     <string name="name">Nome</string>
-    <string name="alterimg">Alterar foto! Clique aqui!</string>
+    <string name="alterimg">Clique na imagem para alterar!</string>
+    <string name="confpassword">Confirme a senha</string>
+    <string name="cadastrar">Cadastrar</string>
 </resources>

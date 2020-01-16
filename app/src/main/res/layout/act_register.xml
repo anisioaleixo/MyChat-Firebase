@@ -80,7 +80,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginVertical="32dp"
             android:background="@drawable/bg_button_rounded"
-            android:text="@string/enter" />
+            android:text="@string/cadastrar" />
 
     </LinearLayout>
 
