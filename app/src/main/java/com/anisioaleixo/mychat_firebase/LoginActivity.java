@@ -15,6 +15,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText senha;
     private Button btnEntar;
     private TextView txtAccount;
+    private TextView txtRecuperaSenha;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         senha = findViewById(R.id.edt_password);
         btnEntar = findViewById(R.id.btn_enter);
         txtAccount = findViewById(R.id.txt_account);
+        txtRecuperaSenha = findViewById(R.id.txt_esqueci_senha);
 
         btnEntar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,8 +40,18 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Código do clique no Criar conta!
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        txtRecuperaSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Código do clique no recuperar senha!
+
+                // Intent intent = new Intent(LoginActivity.this,RecuperaSenhaActivity.class);
+                // startActivity(intent);
             }
         });
     }

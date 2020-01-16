@@ -1,59 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgcolor"
     tools:context=".LoginActivity">
 
-    <EditText
-        android:id="@+id/edt_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:ems="10"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
-    <EditText
-        android:id="@+id/edt_password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Senha"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/edt_email"
-        app:layout_constraintStart_toStartOf="@+id/edt_email"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email" />
+        <EditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_edttext_rounded"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:padding="14dp"
+            android:textSize="20dp" />
 
-    <Button
-        android:id="@+id/btn_enter"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/enter"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:background="@android:color/holo_green_dark"
-        app:layout_constraintEnd_toEndOf="@+id/edt_password"
-        app:layout_constraintStart_toStartOf="@+id/edt_password"
-        app:layout_constraintTop_toBottomOf="@+id/edt_password" />
 
-    <TextView
-        android:id="@+id/txt_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:text="Não tem conta? Crie aqui!"
-        app:layout_constraintEnd_toEndOf="@+id/btn_enter"
-        app:layout_constraintStart_toStartOf="@+id/btn_enter"
-        app:layout_constraintTop_toBottomOf="@+id/btn_enter" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_edttext_rounded"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="14dp"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btn_enter"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_button_rounded"
+            android:text="@string/enter" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+
+            >
+
+            <TextView
+                android:id="@+id/txt_esqueci_senha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtrecuperasenha"
+                android:textAlignment="center"
+                android:textColor="@color/colorEsqueciSenha"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="   |   "
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtaccount"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccount"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</ScrollView>
