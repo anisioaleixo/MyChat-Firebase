@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1011180972980",
+    "firebase_url": "https://mychat-fire.firebaseio.com",
+    "project_id": "mychat-fire",
+    "storage_bucket": "mychat-fire.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011180972980:android:9442445fab2af1941160e1",
+        "android_client_info": {
+          "package_name": "com.anisioaleixo.mychat_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011180972980-44354jo43hvu7sr6acs7pehupe1slq54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbSZeS6gPsCCb0CMqQ4-tUHrbDrc8RaW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011180972980-44354jo43hvu7sr6acs7pehupe1slq54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
