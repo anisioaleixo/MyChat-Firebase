@@ -1,24 +1,35 @@
 package com.anisioaleixo.mychat_firebase;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText email;
-    private EditText senha;
-    private Button btnEntar;
-    private TextView txtAccount;
-    private TextView txtRecuperaSenha;
-    private ImageView imagem;
+    private EditText mEmail;
+    private EditText mSenha;
+    private Button mBtnEntar;
+    private TextView mTxtAccount;
+    private TextView mTxtRecuperaSenha;
+
+    private final String TAG = "AATJ";
+
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -26,22 +37,43 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_login);
 
-        email = findViewById(R.id.edt_email);
-        senha = findViewById(R.id.edt_password);
-        btnEntar = findViewById(R.id.btn_enter);
-        txtAccount = findViewById(R.id.txt_account);
-        txtRecuperaSenha = findViewById(R.id.txt_esqueci_senha);
+        mEmail = findViewById(R.id.edt_email);
+        mSenha = findViewById(R.id.edt_password);
+        mBtnEntar = findViewById(R.id.btn_enter);
+        mTxtAccount = findViewById(R.id.txt_account);
+        mTxtRecuperaSenha = findViewById(R.id.txt_esqueci_senha);
 
-
-        btnEntar.setOnClickListener(new View.OnClickListener() {
+        mBtnEntar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                naoImplemendado("Cadastar");
-                //Código do clique no botão entrar
+
+                String email = mEmail.getText().toString();
+                String password = mSenha.getText().toString();
+
+                if (email.isEmpty() || email == null || password.isEmpty() || password == null) {
+                    Toast.makeText(getApplicationContext(), "Tosdos os campos devem ser preenchidos!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                mAuth = FirebaseAuth.getInstance();
+
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                Log.i(TAG, task.getResult().getUser().getUid());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.i(TAG, e.getMessage());
+                            }
+                        });
             }
         });
 
-        txtAccount.setOnClickListener(new View.OnClickListener() {
+        mTxtAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Código do clique no Criar conta!
@@ -50,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        txtRecuperaSenha.setOnClickListener(new View.OnClickListener() {
+        mTxtRecuperaSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 naoImplemendado("Recuperar senha!");
@@ -63,10 +95,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void naoImplemendado(String nome) {
-        Toast.makeText(getApplicationContext(),"Função "+nome+" não implementada!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Função " + nome + " não implementada!", Toast.LENGTH_SHORT).show();
 
     }
-
-
-
 }
