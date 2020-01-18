@@ -11,4 +11,6 @@
     <string name="cadastrar">Cadastrar</string>
     <string name="contatos">Contatos</string>
     <string name="logut">Sair</string>
+    <string name="contacts">Contatos</string>
+    <string name="registeract">My Chat - Cadastro</string>
 </resources>
