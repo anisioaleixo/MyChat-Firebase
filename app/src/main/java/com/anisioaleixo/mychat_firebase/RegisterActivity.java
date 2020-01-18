@@ -75,12 +75,12 @@ public class RegisterActivity extends AppCompatActivity {
         String email = mEmail.getText().toString();
         String password = mPassword.getText().toString();
 
-        if (name.isEmpty()||name == null||email.isEmpty()||email == null||password.isEmpty()||password == null){
-            Toast.makeText(getApplicationContext(),"Tosdos os campos devem ser preenchidos!",Toast.LENGTH_LONG).show();
+        if (name.isEmpty() || name == null || email.isEmpty() || email == null || password.isEmpty() || password == null) {
+            Toast.makeText(getApplicationContext(), "Tosdos os campos devem ser preenchidos!", Toast.LENGTH_LONG).show();
             return;
         }
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -90,14 +90,14 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.i("AATJ",e.getMessage());
+                        Log.i("AATJ", e.getMessage());
                     }
                 });
     }
 
     private void saveUserInFirebase() {
         String filename = UUID.randomUUID().toString();
-        final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/"+filename);
+        final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/" + filename);
         ref.putFile(mUriImagem)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -105,7 +105,6 @@ public class RegisterActivity extends AppCompatActivity {
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                               // Log.i("AATJ", uri.toString() );
 
                                 String uid = FirebaseAuth.getInstance().getUid();
                                 String username = mName.getText().toString();
@@ -113,15 +112,16 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                                User user =new User(uid,username,urlFoto);
+                                User user = new User(uid, username, urlFoto);
 
                                 db.getInstance().collection("users")
                                         .add(user)
                                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                             @Override
                                             public void onSuccess(DocumentReference documentReference) {
-                                                Log.i("AATJ",documentReference.getId());
-
+                                                Intent intent = new Intent(RegisterActivity.this, MessagesActivity.class);
+                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(intent);
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
@@ -130,8 +130,6 @@ public class RegisterActivity extends AppCompatActivity {
                                                 //Log.i("AATJ",e.getMessage());
                                             }
                                         });
-
-
                             }
                         });
                     }
@@ -147,17 +145,17 @@ public class RegisterActivity extends AppCompatActivity {
     private void alterarImage() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        startActivityForResult(intent,0);
+        startActivityForResult(intent, 0);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 0){
+        if (requestCode == 0) {
             try {
                 mUriImagem = data.getData();
                 Bitmap bitmap = null;
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),mUriImagem);
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mUriImagem);
                 mImage.setImageDrawable(new BitmapDrawable(bitmap));
 
             } catch (IOException e) {

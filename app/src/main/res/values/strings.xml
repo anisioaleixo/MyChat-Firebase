@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyChat-Firebase</string>
+    <string name="app_name">MyChat-AATJ</string>
     <string name="enter">ENTRAR</string>
     <string name="email">E-mail</string>
     <string name="password">Senha</string>
@@ -9,4 +9,6 @@
     <string name="alterimg">Clique na imagem para alterar!</string>
     <string name="confpassword">Confirme a senha</string>
     <string name="cadastrar">Cadastrar</string>
+    <string name="contatos">Contatos</string>
+    <string name="logut">Sair</string>
 </resources>
