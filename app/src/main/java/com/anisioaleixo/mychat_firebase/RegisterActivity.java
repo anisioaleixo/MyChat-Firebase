@@ -3,6 +3,7 @@ package com.anisioaleixo.mychat_firebase;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,10 +42,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void cadastrarUsuario() {
-        //Log.i("AATJ","Solicitando cadastrar usuario!");
+        Log.i("AATJ","Solicitando cadastrar usuario!");
     }
 
     private void alterarImage() {
-        // Log.i("AATJ","Solicitando troca de imagem!");
+        Log.i("AATJ","Solicitando troca de imagem!");
     }
 }

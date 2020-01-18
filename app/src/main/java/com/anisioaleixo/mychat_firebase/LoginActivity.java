@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         btnEntar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                naoImplemendado("Cadastar");
                 //Código do clique no botão entrar
             }
         });
@@ -51,12 +53,20 @@ public class LoginActivity extends AppCompatActivity {
         txtRecuperaSenha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                naoImplemendado("Recuperar senha!");
                 //Código do clique no recuperar senha!
 
                 // Intent intent = new Intent(LoginActivity.this,RecuperaSenhaActivity.class);
                 // startActivity(intent);
             }
         });
+    }
+
+    private void naoImplemendado(String nome) {
+        Toast.makeText(getApplicationContext(),"Função "+nome+" não implementada!",Toast.LENGTH_SHORT).show();
 
     }
+
+
+
 }
