@@ -8,32 +8,35 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private ImageView image;
-    private EditText name;
-    private EditText password;
-    private Button cadastrar;
+    private ImageView mImage;
+    private EditText mName;
+    private EditText mEmail;
+    private EditText mPassword;
+    private Button mCadastrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_register);
 
-        image = findViewById(R.id.img_foto);
-        name = findViewById(R.id.edt_name);
-        password = findViewById(R.id.edt_password);
-        cadastrar = findViewById(R.id.btn_enter);
+        mImage = findViewById(R.id.img_foto);
+        mName = findViewById(R.id.edt_name);
+        mEmail = findViewById(R.id.edt_email);
+        mPassword = findViewById(R.id.edt_password);
+        mCadastrar = findViewById(R.id.btn_enter);
 
-        image.setOnClickListener(new View.OnClickListener() {
+        mImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alterarImage();
             }
         });
 
-        cadastrar.setOnClickListener(new View.OnClickListener() {
+        mCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cadastrarUsuario();
@@ -42,7 +45,17 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void cadastrarUsuario() {
-        Log.i("AATJ","Solicitando cadastrar usuario!");
+        //Log.i("AATJ","Solicitando cadastrar usuario!");
+        String name = mEmail.getText().toString();
+        String email = mEmail.getText().toString();
+        String password = mPassword.getText().toString();
+
+        if (name.isEmpty()||name == null||email.isEmpty()||email == null||password.isEmpty()||password == null){
+            Toast.makeText(getApplicationContext(),"Tosdos os campos devem ser preenchidos!",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
     }
 
     private void alterarImage() {
