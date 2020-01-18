@@ -23,11 +23,15 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -80,7 +84,6 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(getApplicationContext(),"Cadastrado com sucesso!",Toast.LENGTH_LONG).show();
                         saveUserInFirebase();
                     }
                 })
@@ -94,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void saveUserInFirebase() {
         String filename = UUID.randomUUID().toString();
-        final StorageReference ref = FirebaseStorage.getInstance().getReference("/imagens/"+filename);
+        final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/"+filename);
         ref.putFile(mUriImagem)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -102,7 +105,33 @@ public class RegisterActivity extends AppCompatActivity {
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Toast.makeText(getApplicationContext(),uri.toString(),Toast.LENGTH_LONG).show();
+                               // Log.i("AATJ", uri.toString() );
+
+                                String uid = FirebaseAuth.getInstance().getUid();
+                                String username = mName.getText().toString();
+                                String urlFoto = uri.toString();
+
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                                User user =new User(uid,username,urlFoto);
+
+                                db.getInstance().collection("users")
+                                        .add(user)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Log.i("AATJ",documentReference.getId());
+
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                //Log.i("AATJ",e.getMessage());
+                                            }
+                                        });
+
+
                             }
                         });
                     }
@@ -110,7 +139,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.i("AATJ",e.getMessage());
+                        //Log.i("AATJ",e.getMessage());
                     }
                 });
     }
