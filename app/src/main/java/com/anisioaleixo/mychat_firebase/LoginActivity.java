@@ -57,13 +57,20 @@ public class LoginActivity extends AppCompatActivity {
 
                 mAuth = FirebaseAuth.getInstance();
 
+
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                Intent intent = new Intent(LoginActivity.this, MessagesActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
+
+                                if (task.isSuccessful()) {
+                                    Intent intent = new Intent(LoginActivity.this, MessagesActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Autenticação falhou, verifique seu e-mail e senha!",
+                                            Toast.LENGTH_SHORT).show();
+                                }
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
