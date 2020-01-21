@@ -21,6 +21,9 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_chat);
 
+        User user = getIntent().getExtras().getParcelable("user");
+        getSupportActionBar().setTitle(user.getUserName());
+
         RecyclerView rv = findViewById(R.id.recycler_chat);
         adapter = new GroupAdapter();
         rv.setAdapter(adapter);
