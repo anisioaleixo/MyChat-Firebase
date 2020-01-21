@@ -84,7 +84,7 @@ public class ContactsActivity extends AppCompatActivity {
         @Override
         public void bind(@NonNull GroupieViewHolder viewHolder, int position) {
             TextView txtUserName = viewHolder.itemView.findViewById(R.id.txtMessager);
-            ImageView imgUserFoto = viewHolder.itemView.findViewById(R.id.imgMessagerUser);
+            ImageView imgUserFoto = viewHolder.itemView.findViewById(R.id.chat_img_message);
 
             txtUserName.setText(user.getUserName());
 

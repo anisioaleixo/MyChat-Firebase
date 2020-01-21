@@ -6,10 +6,10 @@
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgMessagerUser"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/chat_img_message"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:padding="8dp"
         app:civ_border_color="@android:color/holo_green_dark"
@@ -19,19 +19,19 @@
         tools:srcCompat="@tools:sample/avatars[0]" />
 
     <TextView
-        android:id="@+id/txtMessager"
+        android:id="@+id/chat_txt_msg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="6dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/bg_edttext_rounded_ligt"
+        android:maxWidth="260dp"
         android:padding="8dp"
-        android:text="Eu sei o que esta programando! Eu sei o que esta programando! Eu sei o que esta programando! Eu sei o que esta programando! Eu sei o que esta programando! Eu sei o que esta programando! Eu sei o que esta programando! Eu sei o que esta programando! "
+        android:text="@string/texte_messege"
         android:textColor="@android:color/background_dark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imgMessagerUser"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imgMessagerUser" />
+        app:layout_constraintEnd_toStartOf="@+id/chat_img_message"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
