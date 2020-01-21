@@ -112,10 +112,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 User user = new User(uid, username, urlFoto);
 
                                 db.getInstance().collection("users")
-                                        .add(user)
-                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        .document(uid)
+                                        .set(user)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
-                                            public void onSuccess(DocumentReference documentReference) {
+                                            public void onSuccess(Void aVoid) {
                                                 Intent intent = new Intent(RegisterActivity.this, MessagesActivity.class);
                                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(intent);
