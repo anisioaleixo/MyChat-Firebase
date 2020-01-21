@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,9 +46,9 @@ public class ContactsActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull Item item, @NonNull View view) {
-                Intent intent = new Intent(ContactsActivity.this,ChatActivity.class);
+                Intent intent = new Intent(ContactsActivity.this, ChatActivity.class);
                 UserItem userItem = (UserItem) item;
-                intent.putExtra("user",userItem.user);
+                intent.putExtra("user", userItem.user);
                 startActivity(intent);
             }
         });
@@ -64,10 +65,13 @@ public class ContactsActivity extends AppCompatActivity {
                             Log.e(TAG, e.getMessage());
                         }
                         List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
+                        adapter.clear();
                         for (DocumentSnapshot doc : docs) {
                             User user = doc.toObject(User.class);
-                            Log.d(TAG, user.getUserName());
-                            adapter.add(new UserItem(user));
+                            final String myUserUI = FirebaseAuth.getInstance().getUid();
+                            if (!user.getUuid().equals(myUserUI)) {
+                                adapter.add(new UserItem(user));
+                            }
                         }
                     }
                 });
