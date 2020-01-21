@@ -1,9 +1,5 @@
 package com.anisioaleixo.mychat_firebase;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,16 +30,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private final String TAG = "AATJ";
     private ImageView mImage;
-    private EditText mName;
-    private EditText mEmail;
-    private EditText mPassword;
+    private EditText mName,mEmail,mPassword;
     private Button mCadastrar;
     private Uri mUriImagem;
 
@@ -90,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.i("AATJ", e.getMessage());
+                        Log.i(TAG, e.getMessage());
                     }
                 });
     }
@@ -127,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
-                                                //Log.i("AATJ",e.getMessage());
+                                                Log.i(TAG,e.getMessage());
                                             }
                                         });
                             }
@@ -137,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        //Log.i("AATJ",e.getMessage());
+                        Log.i(TAG,e.getMessage());
                     }
                 });
     }

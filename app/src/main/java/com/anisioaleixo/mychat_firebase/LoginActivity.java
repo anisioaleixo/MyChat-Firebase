@@ -1,8 +1,5 @@
 package com.anisioaleixo.mychat_firebase;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,25 +9,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText mEmail;
-    private EditText mSenha;
-    private Button mBtnEntar;
-    private TextView mTxtAccount;
-    private TextView mTxtRecuperaSenha;
-
     private final String TAG = "AATJ";
 
+    private EditText mEmail, mSenha;
+    private TextView mTxtRecuperaSenha, mTxtAccount;
+    private Button mBtnEntar;
     private FirebaseAuth mAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         mTxtAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Código do clique no Criar conta!
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
@@ -95,10 +89,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 naoImplemendado("Recuperar senha!");
-                //Código do clique no recuperar senha!
-
-                // Intent intent = new Intent(LoginActivity.this,RecuperaSenhaActivity.class);
-                // startActivity(intent);
             }
         });
     }
