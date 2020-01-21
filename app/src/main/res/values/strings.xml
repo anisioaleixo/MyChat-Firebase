@@ -14,4 +14,6 @@
     <string name="contacts">Contatos</string>
     <string name="registeract">My Chat - Cadastro</string>
     <string name="chat">Chat</string>
+    <string name="send">Enviar</string>
+    <string name="messenger">Digite sua menssagem!</string>
 </resources>

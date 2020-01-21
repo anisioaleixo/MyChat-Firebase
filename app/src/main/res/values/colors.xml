@@ -6,5 +6,6 @@
     <color name="bgcolor">#F3F3F3</color>
     <color name="colorEsqueciSenha">#686868</color>
     <color name="colorAccount">#3C3C3C</color>
+    <color name="grey">#e0e0e0</color>
 
 </resources>

@@ -4,6 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     tools:context=".ChatActivity">
+
+    <EditText
+        android:id="@+id/act_chat_messager"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/bg_edttext_rounded_ligt"
+        android:ems="10"
+        android:hint="@string/messenger"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/act_chat_btn_send"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/act_chat_btn_send"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_button_rounded"
+        android:text="@string/send"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_chat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/act_chat_messager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

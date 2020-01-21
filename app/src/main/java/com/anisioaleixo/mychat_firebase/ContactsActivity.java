@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import com.squareup.picasso.Picasso;
 import com.xwray.groupie.GroupAdapter;
 import com.xwray.groupie.GroupieViewHolder;
 import com.xwray.groupie.Item;
+import com.xwray.groupie.OnItemClickListener;
 
 import java.util.List;
 
@@ -38,6 +41,14 @@ public class ContactsActivity extends AppCompatActivity {
         adapter = new GroupAdapter();
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull Item item, @NonNull View view) {
+                Intent intent = new Intent(ContactsActivity.this,ChatActivity.class);
+                startActivity(intent);
+            }
+        });
 
         fechUser();
     }
@@ -70,8 +81,8 @@ public class ContactsActivity extends AppCompatActivity {
 
         @Override
         public void bind(@NonNull GroupieViewHolder viewHolder, int position) {
-            TextView txtUserName = viewHolder.itemView.findViewById(R.id.txtUserName);
-            ImageView imgUserFoto = viewHolder.itemView.findViewById(R.id.imgUserFoto);
+            TextView txtUserName = viewHolder.itemView.findViewById(R.id.txtMessager);
+            ImageView imgUserFoto = viewHolder.itemView.findViewById(R.id.imgMessagerUser);
 
             txtUserName.setText(user.getUserName());
 
