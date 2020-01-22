@@ -120,7 +120,7 @@ public class ChatActivity extends AppCompatActivity {
         message.setTimestamp(timestamp);
         message.setText(text);
 
-        if (!message.getText().isEmpty() ) {  //colocar no if     || text.trim().equals("")
+        if (!message.getText().isEmpty()) {  //colocar no if     || text.trim().equals("")
             FirebaseFirestore.getInstance().collection("/conversations")
                     .document(fromId)
                     .collection(toId)
@@ -128,7 +128,20 @@ public class ChatActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            Log.d(TAG, documentReference.getId());
+
+                            Contacts contacts = new Contacts();
+                            contacts.setUuid(toId);
+                            contacts.setUserName(otherUser.getUserName());
+                            contacts.setPhotoUrl(otherUser.getProfileUrl());
+                            contacts.setTimestamp(message.getTimestamp());
+                            contacts.setLastMessage(message.getText());
+
+                            FirebaseFirestore.getInstance().collection("/last-messages")
+                                    .document(fromId)
+                                    .collection("contacts")
+                                    .document(toId)
+                                    .set(contacts);
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -144,7 +157,21 @@ public class ChatActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            Log.d(TAG, documentReference.getId());
+
+                            Contacts contacts = new Contacts();
+                            contacts.setUuid(toId);
+                            contacts.setUserName(otherUser.getUserName());
+                            contacts.setPhotoUrl(otherUser.getProfileUrl());
+                            contacts.setTimestamp(message.getTimestamp());
+                            contacts.setLastMessage(message.getText());
+
+                            FirebaseFirestore.getInstance().collection("/last-messages")
+                                    .document(toId)
+                                    .collection("contacts")
+                                    .document(fromId)
+                                    .set(contacts);
+
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

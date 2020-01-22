@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.xwray.groupie.GroupieViewHolder;
+import com.xwray.groupie.Item;
 
 public class MessagesActivity extends AppCompatActivity {
 
@@ -48,4 +50,20 @@ public class MessagesActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private class ContactItem extends Item<GroupieViewHolder>{
+
+        @Override
+        public void bind(@NonNull GroupieViewHolder viewHolder, int position) {
+
+        }
+
+        @Override
+        public int getLayout() {
+            return 0;
+        }
+    }
+
+
+
 }
