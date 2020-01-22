@@ -24,14 +24,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="TextView"
         android:textColor="@android:color/background_dark"
         android:textSize="16dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/act_message_img_contact"
-        app:layout_constraintTop_toTopOf="@+id/act_message_img_contact" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/act_message_txt_msg_contact"
