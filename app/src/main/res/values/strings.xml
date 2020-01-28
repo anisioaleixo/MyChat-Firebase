@@ -12,9 +12,11 @@
     <string name="contatos">Contatos</string>
     <string name="logut">Sair</string>
     <string name="contacts">Contatos</string>
-    <string name="registeract">My Chat - Cadastro</string>
+    <string name="registeract">Cadastre-se!</string>
     <string name="chat">Chat</string>
     <string name="send">Enviar</string>
     <string name="messenger">Digite sua menssagem!</string>
     <string name="texte_messege">Oi! como vai a muito tempo que não ha vejo! Estou sentindo saudade! </string>
+    <string name="titleMessenger">Ultimas comversas</string>
+    <string name="singup">Já sou cadastrado!</string>
 </resources>

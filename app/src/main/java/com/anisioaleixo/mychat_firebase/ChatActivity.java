@@ -92,7 +92,6 @@ public class ChatActivity extends AppCompatActivity {
                                 for (DocumentChange doc : documentChanges) {
                                     if (doc.getType() == DocumentChange.Type.ADDED) {
                                         Message message = doc.getDocument().toObject(Message.class);
-
                                         adapter.add(new MessageItem(message));
                                     }
                                 }

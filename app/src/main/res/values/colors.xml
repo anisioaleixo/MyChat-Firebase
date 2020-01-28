@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">#500085</color>
+    <color name="colorPrimaryDark">#500057</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="bgcolor">#F3F3F3</color>
+    <color name="bgcolor">#C59CFC</color>
     <color name="colorEsqueciSenha">#686868</color>
     <color name="colorAccount">#3C3C3C</color>
     <color name="grey">#e0e0e0</color>

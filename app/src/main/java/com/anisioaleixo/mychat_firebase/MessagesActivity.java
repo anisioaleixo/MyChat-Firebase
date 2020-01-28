@@ -49,6 +49,8 @@ public class MessagesActivity extends AppCompatActivity {
     //Buscando as ultimas mensagens dos contatos
     private void fetchLastMessage() {
         String uid = FirebaseAuth.getInstance().getUid();
+        if (uid == null) return;
+
         FirebaseFirestore.getInstance().collection("/last-messages")
                 .document(uid)
                 .collection("contacts")
@@ -56,11 +58,13 @@ public class MessagesActivity extends AppCompatActivity {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         List<DocumentChange> documentChanges = queryDocumentSnapshots.getDocumentChanges();
+
                         if (documentChanges != null) {
                             for (DocumentChange doc : documentChanges) {
                                 if (doc.getType() == DocumentChange.Type.ADDED) {
-                                    Contacts contacts = doc.getDocument().toObject(Contacts.class);
-                                    adapter.add(new ContactItem(contacts));
+                                    Contacts contact = doc.getDocument().toObject(Contacts.class);
+
+                                    adapter.add(new ContactItem(contact));
                                 }
                             }
                         }
@@ -72,7 +76,9 @@ public class MessagesActivity extends AppCompatActivity {
     private void verifyAuthentication() {
         if (FirebaseAuth.getInstance().getUid() == null) {
             Intent intent = new Intent(MessagesActivity.this, LoginActivity.class);
+
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(intent);
         }
     }
@@ -100,7 +106,7 @@ public class MessagesActivity extends AppCompatActivity {
 
     private class ContactItem extends Item<GroupieViewHolder> {
 
-        final Contacts ct;
+        private final Contacts ct;
 
         private ContactItem(Contacts ct) {
             this.ct = ct;
@@ -115,8 +121,9 @@ public class MessagesActivity extends AppCompatActivity {
 
             username.setText(ct.getUserName());
             message.setText(ct.getLastMessage());
-            Picasso.get()
-                    .load(ct.getUuid())
+            Picasso
+                    .get()
+                    .load(ct.getPhotoUrl())
                     .into(imgPhoto);
 
         }

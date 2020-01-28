@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +24,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -36,9 +36,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     private final String TAG = "AATJ";
     private ImageView mImage;
-    private EditText mName,mEmail,mPassword;
+    private EditText mName, mEmail, mPassword;
     private Button mCadastrar;
-    private Uri mUriImagem;
+    private Uri mUriImagem = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +69,34 @@ public class RegisterActivity extends AppCompatActivity {
     private void cadastrarUsuario() {
         //Log.i("AATJ","Solicitando cadastrar usuario!");
         String name = mEmail.getText().toString();
-        String email = mEmail.getText().toString();
+        String email = mEmail.getText().toString().trim();
         String password = mPassword.getText().toString();
 
-        if (name.isEmpty() || name == null || email.isEmpty() || email == null || password.isEmpty() || password == null) {
-            Toast.makeText(getApplicationContext(), "Tosdos os campos devem ser preenchidos!", Toast.LENGTH_LONG).show();
+        //Validações da imagem
+        if (mUriImagem == null) {
+            toastShow("Selecione uma foto para o seu perfil, antes de cadastrar!");
+            return;
+        }
+
+        //Validação do campo name
+        if (name.isEmpty() || name == null) {
+            toastShow("O campo nome deve ser preenchido!");
+            return;
+        }
+
+        //Validações do campo de e-mail
+        if (email.isEmpty() || email == null) {
+            toastShow("O campo email não pode ser vazio!");
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            toastShow("Por favor insira um endereço de e-mail válido!");
+            return;
+        }
+
+        //Validando campo senha
+        if (password.isEmpty() || password == null) {
+            toastShow("O campo senha deve ser preenchido!");
             return;
         }
 
@@ -92,8 +115,16 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
+    private void toastShow(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+    }
+
     private void saveUserInFirebase() {
+
+        toastShow("Cadastrando aguarde!");
+
         String filename = UUID.randomUUID().toString();
+
         final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/" + filename);
         ref.putFile(mUriImagem)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -125,7 +156,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
-                                                Log.i(TAG,e.getMessage());
+                                                Log.i(TAG, e.getMessage());
                                             }
                                         });
                             }
@@ -135,7 +166,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.i(TAG,e.getMessage());
+                        Log.i(TAG, e.getMessage());
                     }
                 });
     }
